@@ -1,11 +1,16 @@
 `timescale 1ns/1ps
 
+
+module tb_top;
+
+
+
 import uvm_pkg::*;                
 `include "uvm_macros.svh"
 
-import axi_lite_tb_pkg::*;       
+import AXI_M_pkg::*;     
+import AXI_S_pkg::*;      
 
-module tb_top;
   logic ACLK;
   logic ARESETn;
 
@@ -20,7 +25,7 @@ module tb_top;
   end
 
   
-  axi4_if axi_if (
+AXI4_if axi_if (
     .ACLK(ACLK),
     .ARESETn(ARESETn)
   );
@@ -28,8 +33,12 @@ module tb_top;
  
 
   initial begin
-    `uvm_info("TB_TOP", "Starting simulation...", UVM_LOW)
-    run_test("axi_lite_test");
+    
+    uvm_config_db#(virtual AXI4_if)::set(null,"*","vif", axi_if);
+    run_test("AXI_test");
+
+    
   end
+
 
 endmodule

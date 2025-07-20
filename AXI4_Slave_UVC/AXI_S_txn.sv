@@ -1,6 +1,6 @@
-class axi_lite_txn extends uvm_sequence_item;
+class AXI_S_txn extends uvm_sequence_item;
 
-  `uvm_object_utils(axi_lite_txn)
+  `uvm_object_utils(AXI_S_txn)
 
   typedef enum {READ, WRITE} txn_type_e;
   txn_type_e txn_type;
@@ -14,7 +14,7 @@ class axi_lite_txn extends uvm_sequence_item;
   bit [1:0]       resp;    
 
  
-  function new(string name = "axi_lite_txn_slave");
+  function new(string name = "AXI_S_txn_slave");
 
     super.new(name);
 

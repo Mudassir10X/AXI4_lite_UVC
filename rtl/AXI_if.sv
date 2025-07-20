@@ -1,4 +1,4 @@
-interface axi4_if #(
+interface AXI4_if #(
   parameter ADDR_WIDTH = 32,
   parameter DATA_WIDTH = 32
 )(

@@ -5,7 +5,7 @@ source ~/cshrc
 xrun -f ../top/file.f
 
 xrun -access +rwc -uvm -f ../top/file.f \
-    +UVM_TESTNAME=base_test \
+    +UVM_TESTNAME=AXI_test \
     -top tb_top \
     -log_xmelab xmelab.log \
     -log_xmsim xmsim.log \
