@@ -1,12 +1,35 @@
-module tb_top();
+`timescale 1ns/1ps
 
-    bit clk, reset;
+import uvm_pkg::*;                
+`include "uvm_macros.svh"
 
-    axi_if #(
-        .ADDR_WIDTH  (32),
-        .DATA_WIDTH  (32)
-    ) axi_if (.clk(ACLK), .rst(ARESETn));
+import axi_lite_tb_pkg::*;       
 
-    always #10 clk = ~clk;
+module tb_top;
+  logic ACLK;
+  logic ARESETn;
+
+  initial ACLK = 0;
+  always #5 ACLK = ~ACLK;
+
+
+  initial begin
+    ARESETn = 0;
+    #20;
+    ARESETn = 1;
+  end
+
+  
+  axi4_if axi_if (
+    .ACLK(ACLK),
+    .ARESETn(ARESETn)
+  );
+
+ 
+
+  initial begin
+    `uvm_info("TB_TOP", "Starting simulation...", UVM_LOW)
+    run_test("axi_lite_test");
+  end
 
 endmodule
