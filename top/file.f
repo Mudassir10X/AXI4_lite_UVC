@@ -10,15 +10,10 @@
 -incdir ../AXI4_Master_UVC/AXI_M_write_agent
 -incdir ../AXI4_Slave_UVC/AXI_S_read_agent
 -incdir ../AXI4_Slave_UVC/AXI_S_write_agent
--incdir ../top
+// -incdir ../top
 // -incdir ..//
 // Compile files
-
-
-
-
-
-
+../top/AXI_macros.sv
 // AXI-Lite interface
 ../rtl/AXI_if.sv
 
