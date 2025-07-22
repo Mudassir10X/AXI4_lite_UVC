@@ -5,7 +5,8 @@ package AXI_S_pkg;
   `include "uvm_macros.svh"
 
   // Include transaction
-  `include "AXI_S_txn.sv"
+  `include "AXI_S_r_txn.sv"
+  `include "AXI_S_w_txn.sv"
   // Slave and slave will need their respective transaction classes. so 2 transactions will be there
 
   // Include Slave read agent components

@@ -1,4 +1,4 @@
-class AXI_S_w_sequencer extends uvm_sequencer #(AXI_S_txn);
+class AXI_S_w_sequencer extends uvm_sequencer #(AXI_S_w_txn);
 
   `uvm_component_utils(AXI_S_w_sequencer)
 

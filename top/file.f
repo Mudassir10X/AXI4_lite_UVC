@@ -19,6 +19,7 @@
 
 ../AXI4_Master_UVC/AXI_M_pkg.sv
 ../AXI4_Slave_UVC/AXI_S_pkg.sv
+../top/AXI_tb.sv
 ../top/test.sv
 ../top/tb_top.sv
 

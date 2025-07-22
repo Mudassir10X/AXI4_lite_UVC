@@ -1,4 +1,4 @@
-class AXI_M_r_driver extends uvm_driver #(AXI_M_txn);
+class AXI_M_r_driver extends uvm_driver #(AXI_M_r_txn);
 
   `uvm_component_utils(AXI_M_r_driver)
 
@@ -21,7 +21,7 @@ class AXI_M_r_driver extends uvm_driver #(AXI_M_txn);
     `uvm_info("Driver", "Inside AXI_M_r_driver run_phase", UVM_LOW)
     forever begin
 
-      AXI_M_txn txn;
+      AXI_M_r_txn txn;
 
       seq_item_port.get_next_item(txn);
 

@@ -1,10 +1,6 @@
-class AXI_M_txn extends uvm_sequence_item;
+class AXI_M_w_txn extends uvm_sequence_item;
 
-  `uvm_object_utils(AXI_M_txn)
-
-
-  typedef enum {READ, WRITE} txn_type_e;
-  txn_type_e txn_type;
+  `uvm_object_utils(AXI_M_w_txn)
 
   // ---------------------------
   // Write Address Channel (AW)
@@ -29,23 +25,9 @@ class AXI_M_txn extends uvm_sequence_item;
   rand logic                       BREADY;
 
   // ---------------------------
-  // Read Address Channel (AR)
-  // ---------------------------
-  rand logic [`ADDR_WIDTH-1:0]      ARADDR;
-  rand logic                       ARVALID;
-       logic                       ARREADY;
-
-  // ---------------------------
-  // Read Data Channel (R)
-  // ---------------------------
-       logic [`DATA_WIDTH-1:0]      RDATA;
-       logic                       RVALID;
-  rand logic                       RREADY;
-
-  // ---------------------------
   // Constructor
   // ---------------------------
-  function new(string name = "AXI_M_txn");
+  function new(string name = "AXI_M_w_txn");
     super.new(name);
   endfunction
 

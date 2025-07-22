@@ -4,8 +4,9 @@ package AXI_M_pkg;
   import uvm_pkg::*;
   `include "uvm_macros.svh"
 
-  // Include transaction
-  `include "AXI_M_txn.sv"
+  // Include transactions
+  `include "AXI_M_r_txn.sv"
+  `include "AXI_M_w_txn.sv"
   // Master and slave will need their respective transaction classes. so 2 transactions will be there
 
   // Include master read agent components
