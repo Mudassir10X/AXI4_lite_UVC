@@ -7,7 +7,6 @@ package AXI_M_pkg;
   // Include transactions
   `include "AXI_M_r_txn.sv"
   `include "AXI_M_w_txn.sv"
-  // Master and slave will need their respective transaction classes. so 2 transactions will be there
 
   // Include master read agent components
   `include "AXI_M_r_driver.sv"

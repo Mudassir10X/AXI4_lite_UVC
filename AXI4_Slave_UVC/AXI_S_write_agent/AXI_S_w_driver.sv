@@ -1,6 +1,9 @@
 class AXI_S_w_driver extends uvm_driver #(AXI_S_w_txn);
 
   `uvm_component_utils(AXI_S_w_driver)
+  
+  // declaring virual interface
+  virtual interface AXI4_if vif;
 
   function new(string name, uvm_component parent);
     super.new(name, parent);
@@ -20,4 +23,11 @@ class AXI_S_w_driver extends uvm_driver #(AXI_S_w_txn);
       seq_item_port.item_done();
     end
   endtask
+
+  function void connect_phase(uvm_phase phase);
+    super.connect_phase(phase);
+    if (!uvm_config_db#(virtual AXI4_if)::get(this, "", "vif", vif)) begin
+      `uvm_fatal(get_type_name(), "NO-VIF")
+    end
+  endfunction
 endclass

@@ -3,6 +3,7 @@
 
 module tb_top;
 
+    typedef uvm_config_db#(virtual AXI4_if) AXI_vif_config;
 
 
 import uvm_pkg::*;                

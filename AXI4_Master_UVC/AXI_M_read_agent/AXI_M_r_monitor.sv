@@ -1,6 +1,9 @@
 class AXI_M_r_monitor extends uvm_monitor;
 
   `uvm_component_utils(AXI_M_r_monitor)
+  
+  // declaring virual interface
+  virtual interface AXI4_if vif;
 
   function new(string name, uvm_component parent);
     super.new(name, parent);
@@ -14,4 +17,11 @@ class AXI_M_r_monitor extends uvm_monitor;
   task run_phase(uvm_phase phase);
     `uvm_info("Monitor", "Inside AXI_M_r_monitor run_phase", UVM_LOW)
   endtask
+
+  function void connect_phase(uvm_phase phase);
+    super.connect_phase(phase);
+    if (!uvm_config_db#(virtual AXI4_if)::get(this, "", "vif", vif)) begin
+      `uvm_fatal(get_type_name(), "NO-VIF")
+    end
+  endfunction
 endclass
