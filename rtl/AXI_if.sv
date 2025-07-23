@@ -32,10 +32,10 @@ interface AXI4_if (
   logic                       ARREADY;
 
 // ============================================================================
-// READ DATA CHANNEL (Slave to Master)
+// READ DATA CHANNEL (Slave to Master) (not needed in AXI4_Lite as no exclusive access is legal)
 // ============================================================================
-  logic [`DATA_WIDTH-1:0]      RDATA;
-  logic                       RVALID;
-  logic                       RREADY;
+  // logic [`DATA_WIDTH-1:0]      RDATA;
+  // logic                       RVALID;
+  // logic                       RREADY;
 
 endinterface

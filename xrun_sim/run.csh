@@ -11,4 +11,4 @@ xrun -access +rwc -uvm -f ../top/file.f \
     -log_xmsim xmsim.log \
     -timescale 1ns/1ns \
     +SVSEED=random \
-    +UVM_VERBOSITY=UVM_HIGH #-gui
+    +UVM_VERBOSITY=UVM_HIGH -gui

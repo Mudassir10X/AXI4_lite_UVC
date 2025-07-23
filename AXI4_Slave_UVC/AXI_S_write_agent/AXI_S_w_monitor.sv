@@ -5,6 +5,12 @@ class AXI_S_w_monitor extends uvm_monitor;
   // declaring virual interface
   virtual interface AXI4_if vif;
 
+  // Collected Data handle
+  AXI_S_w_txn pkt;
+
+  // Count packets collected
+  int num_pkt_col;
+
   function new(string name, uvm_component parent);
     super.new(name, parent);
   endfunction

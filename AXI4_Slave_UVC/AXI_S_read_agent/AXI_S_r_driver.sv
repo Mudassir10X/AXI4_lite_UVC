@@ -5,6 +5,9 @@ class AXI_S_r_driver extends uvm_driver #(AXI_S_r_txn);
   // declaring virual interface
   virtual interface AXI4_if vif;
 
+  // Declare this property to count packets sent
+  int num_sent;
+
   function new(string name, uvm_component parent);
     super.new(name, parent);
   endfunction
