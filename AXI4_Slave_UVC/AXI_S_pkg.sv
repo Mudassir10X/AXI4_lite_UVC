@@ -27,8 +27,6 @@ package AXI_S_pkg;
 
   // Include environment and test
   `include "AXI_S_env.sv"
-  //`include "env/axi_lite_env.sv" // I think the Slave and slave should have different UVC's thus different environments, what do you think?
-  //`include "test/axi_lite_test.sv"
 
   // Import UVM macros
   `include "uvm_macros.svh"
