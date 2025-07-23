@@ -16,10 +16,8 @@ class AXI_M_w_driver extends uvm_driver #(AXI_M_w_txn);
     forever begin
 
       AXI_M_w_txn txn;
-
       seq_item_port.get_next_item(txn);
-
-      `uvm_info("DRV", "", UVM_LOW);
+      `uvm_info("DRV_AXI_M_w", "", UVM_LOW);
       
       seq_item_port.item_done();
 

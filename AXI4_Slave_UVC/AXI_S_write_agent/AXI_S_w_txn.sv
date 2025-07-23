@@ -1,17 +1,5 @@
 class AXI_S_w_txn extends uvm_sequence_item;
 
-  `uvm_object_utils_begin(AXI_S_w_txn)
-  `uvm_field_int    (AWADDR,  UVM_ALL_ON)
-  `uvm_field_int    (AWVALID, UVM_ALL_ON)
-  `uvm_field_int    (AWREADY, UVM_ALL_ON)
-  `uvm_field_int    (WDATA,   UVM_ALL_ON)
-  `uvm_field_int    (WVALID,  UVM_ALL_ON)
-  `uvm_field_int    (WREADY,  UVM_ALL_ON)
-  `uvm_field_int    (BRESP,   UVM_ALL_ON)
-  `uvm_field_int    (BVALID,  UVM_ALL_ON)
-  `uvm_field_int    (BREADY,  UVM_ALL_ON)
-  `uvm_object_utils_end
-
   // ---------------------------
   // Write Address Channel (AW)
   // ---------------------------
@@ -33,6 +21,19 @@ class AXI_S_w_txn extends uvm_sequence_item;
   rand  logic [1:0]                 BRESP;
   rand  logic                       BVALID;
         logic                       BREADY;
+
+  // Registering with the factory
+  `uvm_object_utils_begin(AXI_S_w_txn)
+  `uvm_field_int    (AWADDR,  UVM_ALL_ON)
+  `uvm_field_int    (AWVALID, UVM_ALL_ON)
+  `uvm_field_int    (AWREADY, UVM_ALL_ON)
+  `uvm_field_int    (WDATA,   UVM_ALL_ON)
+  `uvm_field_int    (WVALID,  UVM_ALL_ON)
+  `uvm_field_int    (WREADY,  UVM_ALL_ON)
+  `uvm_field_int    (BRESP,   UVM_ALL_ON)
+  `uvm_field_int    (BVALID,  UVM_ALL_ON)
+  `uvm_field_int    (BREADY,  UVM_ALL_ON)
+  `uvm_object_utils_end
 
   // ---------------------------
   // Constructor

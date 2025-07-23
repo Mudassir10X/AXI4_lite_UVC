@@ -8,20 +8,15 @@ class AXI_S_w_driver extends uvm_driver #(AXI_S_w_txn);
 
   function void build_phase(uvm_phase phase);
     super.build_phase(phase);
-    `uvm_info("Slave_driver", "Inside AXI_S_w_driver build_phase", UVM_LOW)
+    `uvm_info("Driver", "Inside AXI_S_w_driver build_phase", UVM_LOW)
   endfunction
 
   task run_phase(uvm_phase phase);
-    `uvm_info("Slave_driver", "Inside AXI_S_w_driver run_phase", UVM_LOW)
-
+    `uvm_info("Driver", "Inside AXI_S_w_driver run_phase", UVM_LOW)
     forever begin
-
       AXI_S_w_txn txn;
-
       seq_item_port.get_next_item(txn);
-
-      `uvm_info("Slave_driver", $sformatf("Received txn: %s", txn.convert2string()), UVM_LOW)
-
+      `uvm_info("DRV_AXI_S_w", $sformatf("Received txn"), UVM_LOW)
       seq_item_port.item_done();
     end
   endtask

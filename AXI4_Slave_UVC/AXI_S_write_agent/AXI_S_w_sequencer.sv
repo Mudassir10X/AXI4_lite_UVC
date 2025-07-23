@@ -7,6 +7,6 @@ class AXI_S_w_sequencer extends uvm_sequencer #(AXI_S_w_txn);
 
   function void build_phase(uvm_phase phase);
     super.build_phase(phase);
-    `uvm_info("Slave_sequencer", "Inside AXI_S_w_sequencer build_phase", UVM_LOW)
+    `uvm_info("Sequencer", "Inside AXI_S_w_sequencer build_phase", UVM_LOW)
   endfunction
 endclass
