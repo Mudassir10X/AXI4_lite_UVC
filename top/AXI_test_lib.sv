@@ -1,5 +1,5 @@
-import uvm_pkg::*;
 `include "uvm_macros.svh"
+import uvm_pkg::*;
 class AXI_test extends uvm_test;
 
   `uvm_component_utils(AXI_test)

@@ -1,5 +1,7 @@
 class AXI_S_r_agent extends uvm_agent;
-  `uvm_component_utils(AXI_S_r_agent)
+  `uvm_component_utils_begin(AXI_S_r_agent)
+    `uvm_field_enum(uvm_active_passive_enum, is_active, UVM_ALL_ON);
+  `uvm_component_utils_end
 
   AXI_S_r_driver     drv;
   AXI_S_r_monitor    mon;
@@ -12,14 +14,16 @@ class AXI_S_r_agent extends uvm_agent;
   function void build_phase(uvm_phase phase);
     super.build_phase(phase);
     `uvm_info("SLV_AGT", "Inside AXI_S_r_agent build_phase", UVM_LOW)
-
-    drv = AXI_S_r_driver::type_id::create("drv", this);
     mon = AXI_S_r_monitor::type_id::create("mon", this);
-    seq = AXI_S_r_sequencer::type_id::create("seq", this);
+    if (is_active == UVM_ACTIVE) begin
+      drv = AXI_S_r_driver::type_id::create("drv", this);
+      seq = AXI_S_r_sequencer::type_id::create("seq", this);
+    end
   endfunction
 
   function void connect_phase(uvm_phase phase);
     super.connect_phase(phase);
-    drv.seq_item_port.connect(seq.seq_item_export);
+    if (is_active == UVM_ACTIVE) 
+      drv.seq_item_port.connect(seq.seq_item_export);
   endfunction
 endclass
