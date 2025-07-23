@@ -1,0 +1,97 @@
+This File will have the current topology as I update it:
+
+-----------------------------------------------------------------------
+Name                          Type                     Size  Value     
+-----------------------------------------------------------------------
+uvm_test_top                  AXI_test                 -     @2007     
+  tb                          AXI_tb                   -     @2041     
+    env_m                     AXI_M_env                -     @2076     
+      read_agent              AXI_M_r_agent            -     @2124     
+        drv                   AXI_M_r_driver           -     @2298     
+          rsp_port            uvm_analysis_port        -     @2401     
+            recording_detail  uvm_verbosity            32    UVM_FULL  
+          seq_item_port       uvm_seq_item_pull_port   -     @2349     
+            recording_detail  uvm_verbosity            32    UVM_FULL  
+          recording_detail    uvm_verbosity            32    UVM_FULL  
+        mon                   AXI_M_r_monitor          -     @2191     
+          recording_detail    uvm_verbosity            32    UVM_FULL  
+        seq                   AXI_M_r_sequencer        -     @2380     
+          rsp_export          uvm_analysis_export      -     @2494     
+            recording_detail  uvm_verbosity            32    UVM_FULL  
+          seq_item_export     uvm_seq_item_pull_imp    -     @3054     
+            recording_detail  uvm_verbosity            32    UVM_FULL  
+          recording_detail    uvm_verbosity            32    UVM_FULL  
+          arbitration_queue   array                    0     -         
+          lock_queue          array                    0     -         
+          num_last_reqs       integral                 32    'd1       
+          num_last_rsps       integral                 32    'd1       
+        is_active             uvm_active_passive_enum  1     UVM_ACTIVE
+        recording_detail      uvm_verbosity            32    UVM_FULL  
+      write_agent             AXI_M_w_agent            -     @2223     
+        drv                   AXI_M_w_driver           -     @3158     
+          rsp_port            uvm_analysis_port        -     @3260     
+            recording_detail  uvm_verbosity            32    UVM_FULL  
+          seq_item_port       uvm_seq_item_pull_port   -     @3208     
+            recording_detail  uvm_verbosity            32    UVM_FULL  
+          recording_detail    uvm_verbosity            32    UVM_FULL  
+        mon                   AXI_M_w_monitor          -     @3106     
+          recording_detail    uvm_verbosity            32    UVM_FULL  
+        seq                   AXI_M_w_sequencer        -     @3239     
+          rsp_export          uvm_analysis_export      -     @3352     
+            recording_detail  uvm_verbosity            32    UVM_FULL  
+          seq_item_export     uvm_seq_item_pull_imp    -     @3912     
+            recording_detail  uvm_verbosity            32    UVM_FULL  
+          recording_detail    uvm_verbosity            32    UVM_FULL  
+          arbitration_queue   array                    0     -         
+          lock_queue          array                    0     -         
+          num_last_reqs       integral                 32    'd1       
+          num_last_rsps       integral                 32    'd1       
+        is_active             uvm_active_passive_enum  1     UVM_ACTIVE
+        recording_detail      uvm_verbosity            32    UVM_FULL  
+      recording_detail        uvm_verbosity            32    UVM_FULL  
+    env_s                     AXI_S_env                -     @2156     
+      read_agent              AXI_S_r_agent            -     @3959     
+        drv                   AXI_S_r_driver           -     @4078     
+          rsp_port            uvm_analysis_port        -     @4180     
+            recording_detail  uvm_verbosity            32    UVM_FULL  
+          seq_item_port       uvm_seq_item_pull_port   -     @4128     
+            recording_detail  uvm_verbosity            32    UVM_FULL  
+          recording_detail    uvm_verbosity            32    UVM_FULL  
+        mon                   AXI_S_r_monitor          -     @3977     
+          recording_detail    uvm_verbosity            32    UVM_FULL  
+        seq                   AXI_S_r_sequencer        -     @4159     
+          rsp_export          uvm_analysis_export      -     @4272     
+            recording_detail  uvm_verbosity            32    UVM_FULL  
+          seq_item_export     uvm_seq_item_pull_imp    -     @4832     
+            recording_detail  uvm_verbosity            32    UVM_FULL  
+          recording_detail    uvm_verbosity            32    UVM_FULL  
+          arbitration_queue   array                    0     -         
+          lock_queue          array                    0     -         
+          num_last_reqs       integral                 32    'd1       
+          num_last_rsps       integral                 32    'd1       
+        is_active             uvm_active_passive_enum  1     UVM_ACTIVE
+        recording_detail      uvm_verbosity            32    UVM_FULL  
+      write_agent             AXI_S_w_agent            -     @4009     
+        drv                   AXI_S_w_driver           -     @4931     
+          rsp_port            uvm_analysis_port        -     @5033     
+            recording_detail  uvm_verbosity            32    UVM_FULL  
+          seq_item_port       uvm_seq_item_pull_port   -     @4981     
+            recording_detail  uvm_verbosity            32    UVM_FULL  
+          recording_detail    uvm_verbosity            32    UVM_FULL  
+        mon                   AXI_S_w_monitor          -     @4879     
+          recording_detail    uvm_verbosity            32    UVM_FULL  
+        seq                   AXI_S_w_sequencer        -     @5012     
+          rsp_export          uvm_analysis_export      -     @5125     
+            recording_detail  uvm_verbosity            32    UVM_FULL  
+          seq_item_export     uvm_seq_item_pull_imp    -     @5685     
+            recording_detail  uvm_verbosity            32    UVM_FULL  
+          recording_detail    uvm_verbosity            32    UVM_FULL  
+          arbitration_queue   array                    0     -         
+          lock_queue          array                    0     -         
+          num_last_reqs       integral                 32    'd1       
+          num_last_rsps       integral                 32    'd1       
+        is_active             uvm_active_passive_enum  1     UVM_ACTIVE
+        recording_detail      uvm_verbosity            32    UVM_FULL  
+      recording_detail        uvm_verbosity            32    UVM_FULL  
+-----------------------------------------------------------------------
+
