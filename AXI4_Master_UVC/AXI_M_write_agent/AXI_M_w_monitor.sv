@@ -33,10 +33,10 @@ class AXI_M_w_monitor extends uvm_monitor;
   endtask
 
   task monitor_write();
+    wait(vif.ARESETn == 1);
     forever begin
       // Wait for reset deassertion
       @(posedge vif.ACLK);
-      wait(vif.ARESETn == 1);
 
       // Wait for AWVALID and AWREADY handshake
       if (vif.AWVALID && vif.AWREADY) begin

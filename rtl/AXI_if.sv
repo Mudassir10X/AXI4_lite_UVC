@@ -18,11 +18,11 @@ interface AXI4_if (
   logic                       WREADY;
 
 // ============================================================================
-// WRITE RESPONSE CHANNEL (Slave to Master)
+// WRITE RESPONSE CHANNEL (Slave to Master) (not needed in AXI4_Lite as no exclusive access is legal)
 // ============================================================================
-  logic [1:0]                 BRESP;
-  logic                       BVALID;
-  logic                       BREADY;
+  // logic [1:0]                 BRESP;
+  // logic                       BVALID;
+  // logic                       BREADY;
 
 // ============================================================================
 // READ ADDRESS CHANNEL (Master to Slave)
@@ -32,10 +32,10 @@ interface AXI4_if (
   logic                       ARREADY;
 
 // ============================================================================
-// READ DATA CHANNEL (Slave to Master) (not needed in AXI4_Lite as no exclusive access is legal)
+// READ DATA CHANNEL (Slave to Master) 
 // ============================================================================
-  // logic [`DATA_WIDTH-1:0]      RDATA;
-  // logic                       RVALID;
-  // logic                       RREADY;
+  logic [`DATA_WIDTH-1:0]      RDATA;
+  logic                       RVALID;
+  logic                       RREADY;
 
 endinterface

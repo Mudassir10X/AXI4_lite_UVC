@@ -20,10 +20,12 @@ class AXI_test extends uvm_test;
     `uvm_info("TEST", "Inside AXI_test build_phase", UVM_LOW)
     tb = AXI_tb::type_id::create("tb", this);
     uvm_config_int::set(this, "*", "recording_detail", UVM_FULL);
-
     uvm_config_wrapper::set(this, "tb.env_m.write_agent.seq.run_phase",
                                     "default_sequence",
                                     AXI_M_w_seq_base::get_type());
+    uvm_config_wrapper::set(this, "tb.env_s.write_agent.seq.run_phase",
+                                    "default_sequence",
+                                    AXI_S_w_seq_base::get_type());
   endfunction
 
   function void end_of_elaboration_phase(uvm_phase phase);

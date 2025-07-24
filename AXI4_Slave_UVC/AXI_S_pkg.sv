@@ -19,6 +19,7 @@ package AXI_S_pkg;
 
   `include "AXI_S_w_driver.sv"
   `include "AXI_S_w_monitor.sv"
+  `include "AXI_S_w_seq_lib.sv"
   `include "AXI_S_w_sequencer.sv"
   `include "AXI_S_w_agent.sv"
 

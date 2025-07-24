@@ -11,16 +11,15 @@ class AXI_S_w_txn extends uvm_sequence_item;
   // Write Data Channel (W)
   // ---------------------------
         logic [`DATA_WIDTH-1:0]      WDATA;
-        logic [(`DATA_WIDTH/8)-1:0]  WSTRB;
         logic                       WVALID;
   rand  logic                       WREADY;
 
   // ---------------------------
-  // Write Response Channel (B)
+  // Write Response Channel (B) (not needed in AXI4_Lite as no exclusive access is legal)
   // ---------------------------
-  rand  logic [1:0]                 BRESP;
-  rand  logic                       BVALID;
-        logic                       BREADY;
+//   rand  logic [1:0]                 BRESP;
+//   rand  logic                       BVALID;
+//         logic                       BREADY;
 
   // Registering with the factory
   `uvm_object_utils_begin(AXI_S_w_txn)
@@ -30,9 +29,9 @@ class AXI_S_w_txn extends uvm_sequence_item;
   `uvm_field_int    (WDATA,   UVM_ALL_ON)
   `uvm_field_int    (WVALID,  UVM_ALL_ON)
   `uvm_field_int    (WREADY,  UVM_ALL_ON)
-  `uvm_field_int    (BRESP,   UVM_ALL_ON)
-  `uvm_field_int    (BVALID,  UVM_ALL_ON)
-  `uvm_field_int    (BREADY,  UVM_ALL_ON)
+//   `uvm_field_int    (BRESP,   UVM_ALL_ON)
+//   `uvm_field_int    (BVALID,  UVM_ALL_ON)
+//   `uvm_field_int    (BREADY,  UVM_ALL_ON)
   `uvm_object_utils_end
 
   // ---------------------------

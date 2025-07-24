@@ -31,6 +31,8 @@ class AXI_M_w_driver extends uvm_driver #(AXI_M_w_txn);
       seq_item_port.get_next_item(txn);
       `uvm_info("DRV_AXI_M_w", "Master Driving sequence", UVM_LOW);
       drive(txn);
+      `uvm_info(get_type_name(), $sformatf("transaction Driven :\n%s",txn.sprint()), UVM_LOW)
+      this.end_tr(rsp);
       seq_item_port.item_done();
     end
   endtask
@@ -46,7 +48,7 @@ class AXI_M_w_driver extends uvm_driver #(AXI_M_w_txn);
         vif.AWVALID <= pkt.AWVALID;
         @(posedge vif.ACLK);
         wait(vif.AWREADY == 1);
-
+        
         // Deassert AWVALID after handshake
         vif.AWVALID <= 0;
       end
