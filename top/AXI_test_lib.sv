@@ -43,7 +43,7 @@ class AXI_test extends uvm_test;
     super.run_phase(phase);
     `uvm_info("TEST", "Inside AXI_test run_phase", UVM_LOW)
     obj = phase.get_objection();
-    obj.set_drain_time(this, 200ns);
+    obj.set_drain_time(this, 20ns);
     #300ns;
   endtask
 endclass
