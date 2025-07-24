@@ -1,3 +1,5 @@
 docs/Project Progress Report.docx
 xrun_sim/*
 !xrun_sim/run.csh
+# !xrun_sim/restore.tcl
+# !xrun_sim/restore.tcl.svcf

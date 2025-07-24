@@ -29,34 +29,33 @@ class AXI_M_r_driver extends uvm_driver #(AXI_M_r_txn);
     forever begin
       AXI_M_r_txn txn;
       seq_item_port.get_next_item(txn);
-      `uvm_info("DRV_AXI_M_r", "", UVM_LOW);
-      // drive();
+      `uvm_info(get_type_name(), "Master Driving sequence", UVM_LOW);
+      drive(txn);
+      this.end_tr(rsp);
       seq_item_port.item_done();
     end
   endtask
 
-  // task drive();
-  //   // Wait for reset deassertion
-  //   @(posedge vif.ACLK);
-  //   wait(vif.ARESETn == 1);
-
-  //   // Drive Write Address Channel (AW)
-  //   vif.ARADDR  <= txn.ARADDR;
-  //   vif.ARVALID <= txn.ARVALID;
-  //   @(posedge vif.ACLK);
-  //   wait(vif.ARREADY == 1);
-
-  //   // Deassert ARVALID after handshake
-  //   vif.ARVALID <= 0;
+  task drive(AXI_M_r_txn pkt);
+    // Wait for reset deassertion
+    @(negedge vif.ACLK);
+    wait(vif.ARESETn == 1);
+    // Drive READ Address Channel (AR)
+    vif.ARADDR  <= pkt.ARADDR;
+    vif.ARVALID <= pkt.ARVALID;
+    wait(vif.ARREADY == 1);
+    @(posedge vif.ACLK);
     
-  //   // Drive Read Data Channel (R)
-  //   // vif.RDATA  <= txn.RDATA;
-  //   // vif.RVALID <= txn.RVALID;
-  //   vif.RREADY <= 1;
-  //   @(posedge vif.ACLK);
+    // Deassert ARVALID after handshake
+    vif.ARVALID <= 0;
+
+    // Drive READ Data Channel (R)
+    vif.RREADY  <= pkt.RREADY;
     
-  //   // Wait for Data to be valid on the Read channel before deasserting RREADY
-  //   wait(vif.RVALID == 1)
-  //   vif.RREADY <= 0;
-  // endtask
+    wait(vif.RVALID == 1);
+    @(posedge vif.ACLK);
+
+    // Deassert RREADY after handshake
+    vif.RREADY <= 0;
+  endtask
 endclass

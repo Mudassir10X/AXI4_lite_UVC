@@ -29,10 +29,10 @@ class AXI_M_w_monitor extends uvm_monitor;
 
   task run_phase(uvm_phase phase);
     `uvm_info("Monitor", "Inside AXI_M_w_monitor run_phase", UVM_LOW)
-    monitor_write();
+    collect_pkt();
   endtask
 
-  task monitor_write();
+  task collect_pkt();
     wait(vif.ARESETn == 1);
     forever begin
       // Wait for reset deassertion
@@ -52,7 +52,7 @@ class AXI_M_w_monitor extends uvm_monitor;
           pkt.WREADY = vif.WREADY;
 
           num_pkt_col++;
-          `uvm_info("Monitor", $sformatf("Collected Write txn %0d: AWADDR=0x%0h WDATA=0x%0h", num_pkt_col, pkt.AWADDR, pkt.WDATA), UVM_LOW);
+          `uvm_info(get_type_name(), $sformatf("transaction %0d collected :\n%s", num_pkt_col, pkt.sprint()), UVM_LOW);
         end
       end
     end

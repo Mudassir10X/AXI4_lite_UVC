@@ -11,6 +11,7 @@ package AXI_M_pkg;
   // Include master read agent components
   `include "AXI_M_r_driver.sv"
   `include "AXI_M_r_monitor.sv"
+  `include "AXI_M_r_seq_lib.sv"
   `include "AXI_M_r_sequencer.sv"
   `include "AXI_M_r_agent.sv"
 

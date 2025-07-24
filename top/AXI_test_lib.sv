@@ -26,6 +26,12 @@ class AXI_test extends uvm_test;
     uvm_config_wrapper::set(this, "tb.env_s.write_agent.seq.run_phase",
                                     "default_sequence",
                                     AXI_S_w_seq_base::get_type());
+    uvm_config_wrapper::set(this, "tb.env_m.read_agent.seq.run_phase",
+                                    "default_sequence",
+                                    AXI_M_r_seq_base::get_type());
+    uvm_config_wrapper::set(this, "tb.env_s.read_agent.seq.run_phase",
+                                    "default_sequence",
+                                    AXI_S_r_seq_base::get_type());
   endfunction
 
   function void end_of_elaboration_phase(uvm_phase phase);

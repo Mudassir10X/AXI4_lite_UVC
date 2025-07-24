@@ -46,20 +46,15 @@ class AXI_S_w_seq_base extends uvm_sequence #(AXI_S_w_txn);
   // Main task to simulate write behavior of AXI slave
   virtual task body();
     `uvm_info(get_type_name(), $sformatf("Starting AXI Slave Write Base Sequence (txn)"), UVM_MEDIUM)
-
-    repeat (1) begin
-      txn = AXI_S_w_txn::type_id::create("txn");
-
-      start_item(txn);
-
-      // Slave responds ready and sends a response
-      assert(txn.randomize() with {
-        AWREADY == 1;
-        WREADY == 1;
-      });
-
-      finish_item(txn);
-
-    end
+    txn = AXI_S_w_txn::type_id::create("txn");
+    start_item(txn);
+    // Slave responds ready and sends a response
+    assert(txn.randomize() with {
+      AWREADY == 1;
+      WREADY == 1;
+    });
+    finish_item(txn);
+    `uvm_info(get_type_name(), "Write transaction executed", UVM_LOW)
+    txn.print();
   endtask
 endclass

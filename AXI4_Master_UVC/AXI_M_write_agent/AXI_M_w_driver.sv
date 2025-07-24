@@ -31,7 +31,6 @@ class AXI_M_w_driver extends uvm_driver #(AXI_M_w_txn);
       seq_item_port.get_next_item(txn);
       `uvm_info("DRV_AXI_M_w", "Master Driving sequence", UVM_LOW);
       drive(txn);
-      `uvm_info(get_type_name(), $sformatf("transaction Driven :\n%s",txn.sprint()), UVM_LOW)
       this.end_tr(rsp);
       seq_item_port.item_done();
     end
@@ -39,14 +38,14 @@ class AXI_M_w_driver extends uvm_driver #(AXI_M_w_txn);
 
   task drive(AXI_M_w_txn pkt);
     // Wait for reset deassertion
-    @(posedge vif.ACLK);
+    @(negedge vif.ACLK);
     wait(vif.ARESETn == 1);
     fork
       begin
         // Drive Write Address Channel (AW)
         vif.AWADDR  <= pkt.AWADDR;
         vif.AWVALID <= pkt.AWVALID;
-        @(posedge vif.ACLK);
+        @(negedge vif.ACLK);
         wait(vif.AWREADY == 1);
         
         // Deassert AWVALID after handshake
@@ -57,7 +56,7 @@ class AXI_M_w_driver extends uvm_driver #(AXI_M_w_txn);
         // Drive Write Data Channel (W)
         vif.WDATA  <= pkt.WDATA;
         vif.WVALID <= pkt.WVALID;
-        @(posedge vif.ACLK);
+        @(negedge vif.ACLK);
         wait(vif.WREADY == 1);
 
         // Deassert WVALID after handshake

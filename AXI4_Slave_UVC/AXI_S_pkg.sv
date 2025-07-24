@@ -12,6 +12,7 @@ package AXI_S_pkg;
   // Include Slave read agent components
   `include "AXI_S_r_driver.sv"
   `include "AXI_S_r_monitor.sv"
+  `include "AXI_S_r_seq_lib.sv"
   `include "AXI_S_r_sequencer.sv"
   `include "AXI_S_r_agent.sv"
 
