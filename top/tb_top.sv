@@ -37,8 +37,6 @@ AXI4_if axi_if (
     
     uvm_config_db#(virtual AXI4_if)::set(null,"*","vif", axi_if);
     run_test("AXI_test");
-    #200ns;
-    $finish;
   end
 
 
