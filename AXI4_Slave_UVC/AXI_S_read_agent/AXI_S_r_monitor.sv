@@ -28,14 +28,14 @@ class AXI_S_r_monitor extends uvm_monitor;
   endfunction
 
   task run_phase(uvm_phase phase);
+      // Wait for reset deassertion
+    wait(vif.ARESETn == 1);
     `uvm_info("Monitor", "Inside AXI_S_r_monitor run_phase", UVM_LOW)
     collect_pkt();
   endtask
 
   task collect_pkt();
-    wait(vif.ARESETn == 1);
     forever begin
-      // Wait for reset deassertion
       @(posedge vif.ACLK);
 
       // Wait for AWVALID and AWREADY handshake

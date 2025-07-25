@@ -25,6 +25,8 @@ class AXI_S_w_driver extends uvm_driver #(AXI_S_w_txn);
   endfunction
 
   task run_phase(uvm_phase phase);
+    // Wait for reset deassertion
+    wait(vif.ARESETn == 1);
     `uvm_info("Driver", "Inside AXI_S_w_driver run_phase", UVM_LOW)
     forever begin
       AXI_S_w_txn txn;
@@ -36,8 +38,6 @@ class AXI_S_w_driver extends uvm_driver #(AXI_S_w_txn);
   endtask
 
   task drive(AXI_S_w_txn pkt);
-    // Wait for reset deassertion
-    wait(vif.ARESETn == 1);
     fork
     @(negedge vif.ACLK);
       begin

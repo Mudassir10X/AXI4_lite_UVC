@@ -25,6 +25,8 @@ class AXI_M_w_driver extends uvm_driver #(AXI_M_w_txn);
   endfunction
 
   task run_phase(uvm_phase phase);
+    // Wait for reset deassertion
+    wait(vif.ARESETn == 1);
     `uvm_info("Driver", "Inside AXI_M_w_driver run_phase", UVM_LOW)
     forever begin
       AXI_M_w_txn txn;
@@ -37,9 +39,7 @@ class AXI_M_w_driver extends uvm_driver #(AXI_M_w_txn);
   endtask
 
   task drive(AXI_M_w_txn pkt);
-    // Wait for reset deassertion
     @(negedge vif.ACLK);
-    wait(vif.ARESETn == 1);
     fork
       begin
         // Drive Write Address Channel (AW)
@@ -49,7 +49,7 @@ class AXI_M_w_driver extends uvm_driver #(AXI_M_w_txn);
         wait(vif.AWREADY == 1);
         
         // Deassert AWVALID after handshake
-        vif.AWVALID <= 0;
+        vif.AWVALID <= pkt.AWVALID_n;
       end
 
       begin
@@ -60,9 +60,12 @@ class AXI_M_w_driver extends uvm_driver #(AXI_M_w_txn);
         wait(vif.WREADY == 1);
 
         // Deassert WVALID after handshake
-        vif.WVALID <= 0;
+        vif.WVALID <= pkt.WVALID_n;
       end
     join
+    @(posedge vif.ACLK)
+    vif.AWVALID <=  0;
+    vif.WVALID  <=  0;
   endtask
 
 endclass

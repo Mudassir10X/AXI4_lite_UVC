@@ -74,7 +74,7 @@ class AXI_S_r_seq_base extends uvm_sequence #(AXI_S_r_txn);
       RVALID == 1;
     });
     finish_item(txn);
-    `uvm_info(get_type_name(), "Write transaction executed", UVM_LOW)
+    `uvm_info(get_type_name(), "Write transaction executed", UVM_MEDIUM)
     txn.print();
   endtask
 endclass
