@@ -7,9 +7,6 @@ class AXI_S_w_seq_base extends uvm_sequence #(AXI_S_w_txn);
 
   AXI_S_w_txn txn;
 
-  // bit [6:0] id;
-  // const int number_of_transactions;
-
   // Constructor
   function new(string name = "AXI_S_w_seq_base");
     super.new(name);
@@ -50,8 +47,38 @@ class AXI_S_w_seq_base extends uvm_sequence #(AXI_S_w_txn);
     start_item(txn);
     // Slave responds ready and sends a response
     assert(txn.randomize() with {
-      AWREADY == 1;
-      WREADY == 1;
+      AWREADY     == 1;
+      WREADY      == 1;
+      clk_dly_AW  == 1;
+      clk_dly_W   == 1;
+    });
+    finish_item(txn);
+    `uvm_info(get_type_name(), "Write transaction executed", UVM_MEDIUM)
+    txn.print();
+  endtask
+endclass
+
+class AXI_S_w_seq_1clk extends AXI_S_w_seq_base;
+  `uvm_object_utils(AXI_S_w_seq_1clk)
+
+  AXI_S_w_txn txn;
+  
+  // Constructor
+  function new(string name = "AXI_S_w_seq_1clk");
+    super.new(name);
+  endfunction
+
+  // Main task to simulate write behavior of AXI slave
+  virtual task body();
+    `uvm_info(get_type_name(), $sformatf("Starting AXI_S_w_seq_1clk (txn)"), UVM_MEDIUM)
+    txn = AXI_S_w_txn::type_id::create("txn");
+    start_item(txn);
+    // Slave responds ready and sends a response
+    assert(txn.randomize() with {
+      AWREADY     == 1;
+      WREADY      == 1;
+      clk_dly_AW  == 2;
+      clk_dly_W   == 2;
     });
     finish_item(txn);
     `uvm_info(get_type_name(), "Write transaction executed", UVM_MEDIUM)

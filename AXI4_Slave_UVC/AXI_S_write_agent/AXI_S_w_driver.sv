@@ -39,23 +39,24 @@ class AXI_S_w_driver extends uvm_driver #(AXI_S_w_txn);
 
   task drive(AXI_S_w_txn pkt);
     fork
-    @(negedge vif.ACLK);
       begin
+        repeat (pkt.clk_dly_AW) @(negedge vif.ACLK);
         // Drive Write Address Channel (AW)
         vif.AWREADY <= pkt.AWREADY;
-        @(negedge vif.ACLK);
         wait(vif.AWVALID == '1);
+        @(posedge vif.ACLK);
         
         // Deassert AWVALID after handshake
-        vif.AWVALID <= 0;
+        vif.AWREADY <= 0;
       end
 
       begin
+        repeat (pkt.clk_dly_W) @(negedge vif.ACLK);
         // Drive Write Data Channel (W)
         vif.WREADY <= pkt.WREADY;
 
-        @(negedge vif.ACLK);
         wait(vif.WVALID == '1);
+        @(posedge vif.ACLK);
 
         // Deassert WVALID after handshake
         vif.WREADY <= 0;

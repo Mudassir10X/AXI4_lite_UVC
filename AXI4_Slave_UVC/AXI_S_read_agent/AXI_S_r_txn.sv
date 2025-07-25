@@ -13,6 +13,9 @@ class AXI_S_r_txn extends uvm_sequence_item;
   rand  logic [`DATA_WIDTH-1:0]  RDATA;
   rand  logic                    RVALID;
         logic                    RREADY;
+  // delay 
+  rand  int                      clk_dly_AR;
+  rand  int                      clk_dly_R;
 
   // Registering with the factory
   `uvm_object_utils_begin(AXI_S_r_txn)

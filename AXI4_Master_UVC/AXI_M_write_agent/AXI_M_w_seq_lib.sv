@@ -43,10 +43,9 @@ class AXI_M_w_seq_base extends uvm_sequence #(AXI_M_w_txn);
     txn = AXI_M_w_txn::type_id::create("txn");
     start_item(txn);
     assert(txn.randomize() with {
-        AWVALID   == 1;
-        AWVALID_n == 0;
-        WVALID    == 0;
-        WVALID_n  == 1;
+        AWVALID == 1;
+        WVALID  == 1;
+        clk_dly == 1;
       });
     finish_item(txn);
     `uvm_info(get_type_name(), "Write transaction executed", UVM_MEDIUM)
@@ -54,25 +53,24 @@ class AXI_M_w_seq_base extends uvm_sequence #(AXI_M_w_txn);
   endtask
 endclass
 
-// class AXI_M_w_seq_AW_v extends AXI_M_w_seq_base;
-//   `uvm_object_utils(AXI_M_w_seq_AW_v)
+class AXI_M_w_seq_1clk extends AXI_M_w_seq_base;
+  `uvm_object_utils(AXI_M_w_seq_1clk)
 
-//   AXI_M_w_txn txn;
+  function new(string name = "AXI_M_w_seq_1clk");
+    super.new(name);
+  endfunction //new()
 
-//   function new();
-//     super.new();
-//   endfunction //new()
-
-//   virtual task body();
-//     `uvm_info(get_type_name(), "Starting AXI Master Write Base Sequence", UVM_MEDIUM)
-//     txn = AXI_M_w_txn::type_id::create("txn");
-//     start_item(txn);
-//     assert(txn.randomize() with {
-//         AWVALID == 1;
-//         WVALID == 0 ;
-//       });
-//     finish_item(txn);
-//     `uvm_info(get_type_name(), "Write transaction executed", UVM_MEDIUM)
-//     txn.print();
-//   endtask
-// endclass //AXI_M_w_seq_AW_v extends AXI_M_w_seq_base
+  virtual task body();
+    `uvm_info(get_type_name(), "Starting AXI Master Write Base Sequence", UVM_MEDIUM)
+    txn = AXI_M_w_txn::type_id::create("txn");
+    start_item(txn);
+    assert(txn.randomize() with {
+        AWVALID == 1;
+        WVALID  == 1 ;
+        clk_dly == 1;
+      });
+    finish_item(txn);
+    `uvm_info(get_type_name(), "Write transaction executed", UVM_MEDIUM)
+    txn.print();
+  endtask
+endclass //AXI_M_w_seq_1clk extends AXI_M_w_seq_base

@@ -48,7 +48,7 @@ class AXI_M_r_driver extends uvm_driver #(AXI_M_r_txn);
     
     // Deassert ARVALID after handshake
     vif.ARVALID <= 0;
-
+    repeat (pkt.clk_dly) @(posedge vif.ACLK);
     // Drive READ Data Channel (R)
     vif.RREADY  <= pkt.RREADY;
     

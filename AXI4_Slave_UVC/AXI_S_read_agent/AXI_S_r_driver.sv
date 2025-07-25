@@ -38,7 +38,7 @@ class AXI_S_r_driver extends uvm_driver #(AXI_S_r_txn);
   endtask
 
   task drive(AXI_S_r_txn pkt);
-    @(negedge vif.ACLK);
+    repeat (pkt.clk_dly_AR) @(negedge vif.ACLK);
     // Drive Read Address Channel (AR)
     vif.ARREADY <= pkt.ARREADY;
     wait(vif.ARVALID == '1);
@@ -46,6 +46,8 @@ class AXI_S_r_driver extends uvm_driver #(AXI_S_r_txn);
     
     // Deassert ARVALID after handshake
     vif.ARREADY <= 0;
+    
+    repeat (pkt.clk_dly_R) @(posedge vif.ACLK);
 
     // Drive Read Data Channel (R)
     vif.RDATA <= pkt.RDATA;

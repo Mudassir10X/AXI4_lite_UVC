@@ -38,4 +38,19 @@ interface AXI4_if (
   logic                       RVALID;
   logic                       RREADY;
 
+  initial begin
+    AWADDR  = '0;
+    AWVALID = 0;
+    AWREADY = 0;
+    WDATA   = '0;
+    WVALID  = 0;
+    WREADY  = 0;
+    ARADDR  = '0;
+    ARVALID = 0;
+    ARREADY = 0;
+    RDATA   = '0;
+    RVALID  = 0;
+    RREADY  = 0;
+  end
+
 endinterface

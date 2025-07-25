@@ -68,10 +68,54 @@ class AXI_S_r_seq_base extends uvm_sequence #(AXI_S_r_txn);
     // - RVALID : Slave has valid data to return
     // Optionally, you can constrain RDATA to fixed values for debug
     assert(txn.randomize() with {
-      ARREADY == 1;
-      RDATA == 32'hFEEDFACE; // Optional pattern
-      // RDATA inside {32'hABABABAB, 32'hBEEFBEEF, 32'hFEEDFACE}; // Optional pattern
-      RVALID == 1;
+      RDATA inside {32'hBEEFCAFE, 32'hCAFEBABE, 32'hFEEDFACE}; // Optional pattern
+      ARREADY     == 1;
+      RVALID      == 1;
+      clk_dly_AR  == 1;
+      clk_dly_R   == 0;
+    });
+    finish_item(txn);
+    `uvm_info(get_type_name(), "Write transaction executed", UVM_MEDIUM)
+    txn.print();
+  endtask
+endclass
+
+class AXI_S_r_seq_1clk extends AXI_S_r_seq_base;
+  `uvm_object_utils(AXI_S_r_seq_1clk)
+
+  // Transaction handle for the AXI Slave Read
+  AXI_S_r_txn txn;
+
+  // ------------------------
+  // Constructor
+  // ------------------------
+  function new(string name = "AXI_S_r_seq_1clk");
+    super.new(name);
+  endfunction
+
+  // ------------------------
+  // Body: Main logic of the sequence
+  // Randomizes and sends a read transaction with slave response
+  // ------------------------
+  virtual task body();
+    `uvm_info(get_type_name(), "Starting AXI_S_r_seq_1clk", UVM_MEDIUM)
+
+    // Create the transaction object
+    txn = AXI_S_r_txn::type_id::create("txn");
+
+    // Start the transaction
+    start_item(txn);
+
+    // Randomize fields:
+    // - ARREADY: Slave is ready to accept address
+    // - RVALID : Slave has valid data to return
+    // Optionally, you can constrain RDATA to fixed values for debug
+    assert(txn.randomize() with {
+      RDATA inside {32'hBEEFCAFE, 32'hCAFEBABE, 32'hFEEDFACE}; // Optional pattern
+      ARREADY     == 1;
+      RVALID      == 1;
+      clk_dly_AR  == 2;
+      clk_dly_R   == 1;
     });
     finish_item(txn);
     `uvm_info(get_type_name(), "Write transaction executed", UVM_MEDIUM)
