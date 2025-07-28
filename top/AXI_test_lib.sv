@@ -144,7 +144,7 @@ class AXI_test_concurrent_AW_W extends AXI_test;
     uvm_config_int::set(this, "*", "recording_detail", UVM_FULL);
     uvm_config_wrapper::set(this, "tb.env_m.write_agent.seq.run_phase",
                                     "default_sequence",
-                                    AXI_M_w_seq_base::get_type());
+                                    AXI_M_w_seq_0clk::get_type());
     uvm_config_wrapper::set(this, "tb.env_s.write_agent.seq.run_phase",
                                     "default_sequence",
                                     AXI_S_w_seq_base::get_type());
@@ -159,7 +159,7 @@ endclass
 
 class AXI_test_S_w_stall extends AXI_test;
 
-  `uvm_component_utils(AXI_test_concurrent_AW_W)
+  `uvm_component_utils(AXI_test_S_w_stall)
 
   function new(string name = "AXI_test_S_w_stall", uvm_component parent = null);
     super.new(name, parent);

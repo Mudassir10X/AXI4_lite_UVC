@@ -74,3 +74,25 @@ class AXI_M_w_seq_1clk extends AXI_M_w_seq_base;
     txn.print();
   endtask
 endclass //AXI_M_w_seq_1clk extends AXI_M_w_seq_base
+
+class AXI_M_w_seq_0clk extends AXI_M_w_seq_base;
+  `uvm_object_utils(AXI_M_w_seq_0clk)
+
+  function new(string name = "AXI_M_w_seq_0clk");
+    super.new(name);
+  endfunction //new()
+
+  virtual task body();
+    `uvm_info(get_type_name(), "Starting AXI_M_w_seq_0clk", UVM_MEDIUM)
+    txn = AXI_M_w_txn::type_id::create("txn");
+    start_item(txn);
+    assert(txn.randomize() with {
+        AWVALID == 1;
+        WVALID  == 1 ;
+        clk_dly == 0;
+      });
+    finish_item(txn);
+    `uvm_info(get_type_name(), "Write transaction executed", UVM_MEDIUM)
+    txn.print();
+  endtask
+endclass //AXI_M_w_seq_0clk extends AXI_M_w_seq_base
